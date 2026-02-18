@@ -60,6 +60,19 @@ export default function BookmarkDashboard({ user }: { user: User }) {
         };
     }, [supabase]);
 
+    // Cross-tab sign-out: redirect when session is revoked from another tab
+    useEffect(() => {
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+            if (event === "SIGNED_OUT") {
+                window.location.href = "/";
+            }
+        });
+
+        return () => {
+            subscription.unsubscribe();
+        };
+    }, [supabase]);
+
     const handleAdd = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!url.trim() || !title.trim()) return;
