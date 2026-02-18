@@ -1,6 +1,5 @@
 -- ============================================================
 -- Smart Bookmark App — Supabase Schema
--- Run this in: Supabase Dashboard → SQL Editor → New Query
 -- ============================================================
 
 -- 1. Create the bookmarks table
